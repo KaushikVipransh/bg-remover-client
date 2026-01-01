@@ -1,17 +1,32 @@
 import { steps } from '../assets/assets.js';
+import { motion } from "framer-motion";
 
 const BgRemovalSteps = () => {
     return (
-        <div className="text-center mb-16">
+        <div id="steps" className="text-center mb-16">
 
-            <h2 className="text-4xl md:text-4x1 font-bold text-gray-900 mb-12">
+            <motion.h2 
+                className="text-4xl md:text-4x1 font-bold text-gray-900 mb-12"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+            >
                 How to Remove Background?
-            </h2>
+            </motion.h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 {steps.map((item, index) => (
-                    <div key={index} className="bg-gray-50 p-8 rounded-2x1 shadow-sm">
+                    <motion.div 
+                        key={index} 
+                        className="bg-gray-50 p-8 rounded-2x1 shadow-sm"
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.2 }}
+                        whileHover={{ scale: 1.05 }}
+                    >
 
                         <span className="inline-block bg-gray-200 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-full mb-4">
                             {item.step}
@@ -23,7 +38,7 @@ const BgRemovalSteps = () => {
                             {item.description}
                         </p>
 
-                    </div>
+                    </motion.div>
 
                 ))}
 

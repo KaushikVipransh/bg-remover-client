@@ -30,6 +30,8 @@ const Menubar = () => {
             </Link>
 
             <div className="hidden md:flex items-center space-x-4">
+                <a href="#steps" className="text-gray-700 hover:text-blue-500 font-medium">How it works</a>
+                <a href="#pricing" className="text-gray-700 hover:text-blue-500 font-medium">Pricing</a>
                 <SignedOut>
                     <button className="text-gray-700 hover:text-blue-500 font-medium" onClick={openLogin}>
                         Login
@@ -40,8 +42,8 @@ const Menubar = () => {
                 </SignedOut>
                 <SignedIn>
                     <div className="flex items-center gap-2 sm:gap-3">
-                        <button className="flex items-center gap-2 bg-blue-100 px-4 sm:px-5 py-1.5 sm:py-2.5 rounded-full hover:scale-105 transition-all duration-500 cursor-pointer">
-                            <p className="text-xs sm:text-sm font-medium text-gray-600">
+                        <button className="flex items-center gap-2 px-4 sm:px-5 py-1.5 sm:py-2.5 cursor-pointer">
+                            <p className="text-4xl sm:text-sm font-medium text-gray-600">
                                 Credits:0
                             </p>
                         </button>
@@ -62,6 +64,8 @@ const Menubar = () => {
 
             {menuOpen && (
                 <div className="absolute top-16 right-8 bg-white shadow-md rounded-md flex flex-col space-y-4 w-40 p-4">
+                    <a href="#steps" className="text-gray-700 hover:text-blue-500 font-medium" onClick={() => setMenuOpen(false)}>How it works</a>
+                    <a href="#pricing" className="text-gray-700 hover:text-blue-500 font-medium" onClick={() => setMenuOpen(false)}>Pricing</a>
                     <SignedOut>
                         <button className="text-gray-700 hover:text-blue-500 font-medium" onClick={openLogin}>
                             Login
