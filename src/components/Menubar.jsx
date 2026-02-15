@@ -64,8 +64,6 @@ const Menubar = () => {
 
             {menuOpen && (
                 <div className="absolute top-16 right-8 bg-white shadow-md rounded-md flex flex-col space-y-4 w-40 p-4">
-                    <a href="#steps" className="text-gray-700 hover:text-blue-500 font-medium" onClick={() => setMenuOpen(false)}>How it works</a>
-                    <a href="#pricing" className="text-gray-700 hover:text-blue-500 font-medium" onClick={() => setMenuOpen(false)}>Pricing</a>
                     <SignedOut>
                         <button className="text-gray-700 hover:text-blue-500 font-medium" onClick={openLogin}>
                             Login
