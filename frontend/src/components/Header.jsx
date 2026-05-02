@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { Download } from "lucide-react";
 import { useUser } from "@clerk/clerk-react";
+import API_BASE_URL from "../config";
 
 const Header = () =>{
     const inputRef = useRef(null);
@@ -23,7 +24,7 @@ const Header = () =>{
                 formData.append("userId", user.id);
             }
 
-            const response = await fetch("http://localhost:8080/api/bgremover/remove", {
+            const response = await fetch(`${API_BASE_URL}/api/bgremover/remove`, {
                 method: "POST",
                 body: formData,
             });
@@ -47,9 +48,9 @@ const Header = () =>{
 
     const downloadImage = () => {
         if (!processedImage) return;
-        
+
         const link = document.createElement("a");
-        link.href = `http://localhost:8080/api${processedImage}`;
+        link.href = `${API_BASE_URL}/api${processedImage}`;
         link.download = "processed-image.png";
         link.click();
     };
@@ -65,8 +66,8 @@ const Header = () =>{
                             animate={{ opacity: 1, scale: 1 }}
                             className="shadow-[0_50px_50px_-12px_rgba(0,0,0,0.15)] rounded-4xl overflow-hidden"
                         >
-                            <img 
-                                src={`http://localhost:8080/api${processedImage}`}
+                            <img
+                                src={`${API_BASE_URL}/api${processedImage}`}
                                 alt="Processed"
                                 className="w-full max-w-[400px] h-auto object-cover"
                             />
@@ -77,7 +78,7 @@ const Header = () =>{
                         </div>
                     )}
                 </div>
-                
+
 
                 {/* right side */}
                 <div className="order-1 md:order-2">
@@ -119,7 +120,7 @@ const Header = () =>{
                             ))}
                         </span>
                     </h1>
-                
+
 
                 <motion.p className="text-gray-600 mb-8 text-lg leading-relaxed"
                     initial={{ opacity: 0 }}
@@ -131,25 +132,25 @@ const Header = () =>{
                     Fast, reliable, and designed to make your visuals stand out.
                 </motion.p>
 
-                
-                
+
+
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 2.2, duration: 1 }}
                 >
-                    <input 
-                        type="file" 
-                        accept="image/*" 
-                        id="upload1" 
-                        hidden 
+                    <input
+                        type="file"
+                        accept="image/*"
+                        id="upload1"
+                        hidden
                         ref={inputRef}
                         onChange={handleFileChange}
                     />
                     <label htmlFor="upload1" className="bg-black text-white font-medium px-8 py-4 rounded-full hover:opacity-90 transition-transform hover:scale-105 text-lg cursor-pointer inline-block mr-4">
                         Upload Image
                     </label>
-                    
+
                     {processedImage && (
                         <button
                             onClick={downloadImage}
