@@ -19,6 +19,10 @@ public class BgRemovalServiceImpl implements BgRemovalService {
 
     @Value("${app.upload.dir:uploads}")
     private String uploadDir;
+    @Value("${app.python.bin:python3}")
+    private String pythonBin;
+    @Value("${app.python.script:rembg_processor.py}")
+    private String pythonScript;
 
     @Override
     public String removeBackground(MultipartFile image) throws IOException {
@@ -31,14 +35,13 @@ public class BgRemovalServiceImpl implements BgRemovalService {
         String processedFilePath = uploadDir + "/" + processedFileName;
         
         try {
-            // Call Python rembg script using virtual environment
+            // Call Python rembg script using configured runtime
             ProcessBuilder pb = new ProcessBuilder(
-                "/Users/krish/Downloads/bg-remover-client/.venv/bin/python3",
-                "rembg_processor.py",
+                pythonBin,
+                pythonScript,
                 new File(originalFilePath).getAbsolutePath(),
                 new File(processedFilePath).getAbsolutePath()
             );
-            pb.directory(new File("/Users/krish/Downloads/bg-remover-client/backend"));
             pb.redirectErrorStream(true);
             
             Process process = pb.start();
